@@ -7,7 +7,11 @@ body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sa
 
 /* ===== Liste ===== */
 .bao-intro { margin: 36px 0 24px; }
-.bao-intro h1 { font-size: 24px; font-weight: 700; margin: 0 0 6px; }
+.bao-intro-row { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 6px; }
+.bao-intro h1 { font-size: 24px; font-weight: 700; margin: 0; }
+.bao-link-btn { border: none; background: none; padding: 0; font-family: inherit; font-size: 13.5px; font-weight: 600; color: #C2417A; cursor: pointer; }
+.bao-link-btn:hover { text-decoration: underline; }
+.bao-link-btn:empty { display: none; }
 .bao-intro p { font-size: 14.5px; color: #68686f; margin: 0; }
 
 .bao-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
@@ -25,25 +29,34 @@ body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sa
 .bao-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--type-color); }
 .bao-card:hover { box-shadow: 0 8px 24px rgba(20,20,30,.08); transform: translateY(-2px); }
 .bao-card-type { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--type-color); margin-bottom: 14px; }
-.bao-type-icon { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 8px; color: var(--type-color); background: color-mix(in srgb, var(--type-color) 12%, #fff); }
+.bao-type-icon { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 8px; color: var(--type-color); background: var(--type-bg, #f4f4f6); }
 .bao-type-icon-lg { width: 44px; height: 44px; border-radius: 10px; }
 .bao-card-title { font-size: 16.5px; font-weight: 700; line-height: 1.35; margin: 0 0 8px; }
 .bao-card:hover .bao-card-title { color: var(--type-color); }
-.bao-card-summary { flex: 1; font-size: 13.5px; line-height: 1.55; color: #68686f; margin: 0 0 16px; }
-.bao-card-status { align-self: flex-start; font-size: 11.5px; font-weight: 600; color: #68686f; background: #f4f4f6; padding: 4px 10px; border-radius: 20px; }
+.bao-card-summary { flex: 1; font-size: 13.5px; line-height: 1.55; color: #68686f; margin: 0; }
 
 /* ===== Fiche détail ===== */
 .bao-detail { padding: 36px 44px 32px; margin-bottom: 60px; border-top: 4px solid var(--type-color); }
 .bao-detail-type { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--type-color); margin-bottom: 14px; }
-.bao-detail-title { font-size: 28px; font-weight: 700; line-height: 1.25; margin: 0 0 16px; }
-.bao-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 26px; }
-.bao-tag { font-size: 12px; font-weight: 600; padding: 4px 11px; border-radius: 20px; border: 1px solid var(--tag-color); color: var(--tag-color); }
+.bao-detail-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; padding-bottom: 26px; margin-bottom: 28px; border-bottom: 1px solid #e4e4e8; }
+.bao-detail-title { font-size: 28px; font-weight: 700; line-height: 1.25; margin: 0; }
+.bao-detail-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.bao-detail-actions .sh-btn-primary { background: #C2417A; }
+.bao-detail-actions .sh-btn-primary:hover { background: #9c3262; }
+.bao-kebab-btn { width: 40px; height: 40px; border: 1px solid #d4d4da; background: #fff; }
+.bao-kebab-menu { width: 260px; }
+.bao-kebab-menu button { display: flex; justify-content: space-between; gap: 10px; }
+.bao-menu-size { color: #9a9aa1; font-size: 12.5px; }
 
-.bao-tabs { display: flex; gap: 24px; border-bottom: 1px solid #e4e4e8; margin-bottom: 28px; }
-.bao-tab { border: none; background: none; padding: 10px 0; margin-bottom: -1px; font-family: inherit; font-size: 14px; font-weight: 600; color: #9a9aa1; cursor: pointer; border-bottom: 2px solid transparent; display: inline-flex; align-items: center; gap: 6px; }
-.bao-tab:hover { color: #1a1a1e; }
-.bao-tab.is-active { color: #1a1a1e; border-bottom-color: #C2417A; }
-.bao-tab-count { font-size: 11px; background: #f4f4f6; color: #68686f; padding: 1px 7px; border-radius: 10px; }
+/* ===== Charte ===== */
+.bao-charter { position: relative; max-width: 680px; max-height: calc(100vh - 48px); padding: 0; display: flex; flex-direction: column; }
+.bao-charter-close { position: absolute; top: 14px; right: 14px; }
+.bao-charter-body { padding: 32px 36px 12px; overflow-y: auto; }
+.bao-charter-footer { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 36px 24px; border-top: 1px solid #e4e4e8; }
+.bao-charter-signed { font-size: 13px; color: #9a9aa1; margin: 0; }
+.bao-charter-footer .sh-btn-primary { margin-left: auto; background: #C2417A; }
+.bao-charter-footer .sh-btn-primary:hover { background: #9c3262; }
+.bao-charter-footer .sh-btn-primary:disabled { opacity: .6; cursor: default; }
 
 .bao-section-title, .bao-prose h2 { font-size: 18px; font-weight: 700; margin: 0 0 16px; }
 .bao-glance { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 36px; }
@@ -66,12 +79,6 @@ body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sa
 .bao-prose a { color: #C2417A; }
 .bao-prose img { max-width: 100%; border-radius: 8px; border: 1px solid #e4e4e8; }
 
-.bao-files { display: flex; flex-direction: column; gap: 10px; }
-.bao-file { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border: 1px solid #e4e4e8; border-radius: 9px; background: #fff; font-family: inherit; text-align: left; cursor: pointer; color: #68686f; }
-.bao-file:hover { border-color: #C2417A; }
-.bao-file-name { flex: 1; font-size: 14px; font-weight: 600; color: #1a1a1e; }
-.bao-file-size { font-size: 12.5px; }
-.bao-file-dl { font-size: 13px; font-weight: 600; color: #C2417A; }
 
 .bao-updated { font-size: 12.5px; font-style: italic; color: #9a9aa1; margin: 36px 0 0; }
 
@@ -79,4 +86,17 @@ body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sa
   .bao-glance { grid-template-columns: 1fr; }
   .bao-detail { padding: 26px 22px; }
   .bao-search { width: 100%; }
+  .bao-detail-head { flex-direction: column; }
+}
+
+/* ===== Export PDF (impression) : la fiche seule, sans la suite autour ===== */
+@media print {
+  @page { size: A4; margin: 14mm 12mm; }
+  body { background: #fff; }
+  .sh-header, .sh-overlay, .sh-drawer, .sh-modal-overlay, .sh-back-link, .bao-detail-actions, #listView { display: none !important; }
+  .sh-page-container { max-width: none; padding: 0; }
+  .bao-detail { border: none; border-top: 4px solid var(--type-color); border-radius: 0; padding: 18px 0 0; margin: 0; }
+  .bao-glance-item, .bao-prose li, .bao-prose blockquote, .bao-prose pre { break-inside: avoid; }
+  .bao-prose h2, .bao-prose h3, .bao-section-title { break-after: avoid; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }

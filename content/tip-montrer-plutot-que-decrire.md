@@ -2,7 +2,6 @@
 type: tip
 titre: Montre plutôt que décrire
 resume: Une capture d'écran annotée vaut mieux qu'un long paragraphe pour expliquer un bug ou une intention de design.
-statut: Bonne pratique
 cible: Toute l'équipe UX
 objectif: Être compris du premier coup et éviter les allers-retours.
 domaine: Signalement de bugs, demandes de retouches visuelles, benchmarks.

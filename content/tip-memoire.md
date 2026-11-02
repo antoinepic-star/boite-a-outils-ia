@@ -2,7 +2,6 @@
 type: tip
 titre: Fais retenir tes habitudes à Claude
 resume: Dis à Claude « retiens que… » pour qu'il applique tes préférences à chaque nouvelle conversation, sans avoir à les répéter.
-statut: Bonne pratique
 cible: Toute l'équipe UX
 objectif: Ne plus réexpliquer ses conventions de travail à chaque session.
 domaine: Préférences de rédaction, conventions de nommage, étapes de validation.

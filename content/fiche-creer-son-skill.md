@@ -2,13 +2,14 @@
 type: fiche
 titre: Comment créer et installer un skill ?
 resume: Guide pas à pas pour transformer une façon de faire récurrente en skill réutilisable par toute l'équipe.
-statut: Guide
 cible: Toute l'équipe UX
 objectif: Capitaliser une méthode (audit, wireframe, rédaction…) pour qu'elle soit appliquée de la même façon par tous.
 domaine: Skills Claude (fichiers SKILL.md).
 atout: Un skill se déclenche tout seul quand la demande correspond à sa description.
 maj: 2026-11-02
 ordre: 50
+action: Télécharger le modèle
+fichier: modele-SKILL.md
 ---
 
 ## Qu'est-ce qu'un skill ?
@@ -23,4 +24,4 @@ ordre: 50
 
 ## Modèle
 
-Le modèle de fichier `SKILL.md` est disponible dans l'onglet **Fichiers**.
+Le modèle de fichier `SKILL.md` se télécharge avec le bouton en haut de cette fiche.

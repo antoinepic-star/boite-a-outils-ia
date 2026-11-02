@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const path = require('path');
 const fs = require('fs');
 const { marked } = require('marked');
+const { createClient } = require('@libsql/client');
 
 function requireSecret(name) {
   const value = process.env[name];
@@ -28,6 +29,23 @@ const INTERNAL_API_SECRET = requireSecret('INTERNAL_API_SECRET');
 // Ajouter une carte = ajouter un fichier .md puis pousser : Render redéploie tout seul.
 const CONTENT_DIR = path.join(__dirname, 'content');
 const FILES_DIR = path.join(CONTENT_DIR, 'files');
+
+// Seule donnée persistée : qui a signé quelle version de la charte, et quand. En local, si
+// TURSO_DATABASE_URL est vide, un fichier SQLite (data/boite-a-outils.db) suffit.
+if (!process.env.TURSO_DATABASE_URL) fs.mkdirSync(path.join(__dirname, 'data'), { recursive: true });
+const turso = createClient({
+  url: process.env.TURSO_DATABASE_URL || 'file:./data/boite-a-outils.db',
+  authToken: process.env.TURSO_AUTH_TOKEN,
+});
+
+async function initDb() {
+  await turso.execute(`CREATE TABLE IF NOT EXISTS charter_signatures (
+    user_id TEXT NOT NULL,
+    version TEXT NOT NULL,
+    signed_at INTEGER NOT NULL,
+    PRIMARY KEY (user_id, version)
+  )`);
+}
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -79,10 +97,26 @@ function parseCard(slug, raw) {
     objective: meta.objectif || '',
     domain: meta.domaine || '',
     highlight: meta.atout || '',
+    actionLabel: meta.action || '',
+    actionFile: meta.fichier || '',
     updatedAt: meta.maj || '',
     order: Number(meta.ordre) || 999,
     body,
   };
+}
+
+// La charte est un fichier Markdown à part (content/charte.md), hors de la grille de cartes. Changer
+// son "version:" redemande la signature à tout le monde (les signatures sont stockées par version).
+function loadCharter() {
+  const raw = fs.readFileSync(path.join(CONTENT_DIR, 'charte.md'), 'utf8');
+  const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
+  const version = match?.[1].match(/^version:\s*(.+)$/m)?.[1].trim() || '1';
+  return { version, html: marked.parse(match ? match[2] : raw) };
+}
+
+async function charterSignedAt(userId, version) {
+  const res = await turso.execute({ sql: 'SELECT signed_at FROM charter_signatures WHERE user_id = ? AND version = ?', args: [userId, version] });
+  return res.rows[0] ? Number(res.rows[0].signed_at) : null;
 }
 
 function listFiles(slug) {
@@ -97,13 +131,13 @@ function listFiles(slug) {
 // apparaît sans redémarrer le serveur.
 function loadCards() {
   return fs.readdirSync(CONTENT_DIR)
-    .filter(name => name.endsWith('.md'))
+    .filter(name => name.endsWith('.md') && name !== 'charte.md')
     .map(name => parseCard(name.replace(/\.md$/, ''), fs.readFileSync(path.join(CONTENT_DIR, name), 'utf8')))
     .sort((a, b) => a.order - b.order || a.title.localeCompare(b.title, 'fr'));
 }
 
 function findCard(slug) {
-  if (!/^[a-z0-9-]+$/.test(slug)) return null;
+  if (!/^[a-z0-9-]+$/.test(slug) || slug === 'charte') return null;
   const file = path.join(CONTENT_DIR, `${slug}.md`);
   if (!fs.existsSync(file)) return null;
   return parseCard(slug, fs.readFileSync(file, 'utf8'));
@@ -181,13 +215,37 @@ app.post('/api/admin/avatar', adminAuth, ah(async (req, res) => {
   res.json(result);
 }));
 
+// ---------- Charte ----------
+
+app.get('/api/charter', adminAuth, ah(async (req, res) => {
+  const charter = loadCharter();
+  res.json({ ...charter, signedAt: await charterSignedAt(req.user.sub, charter.version) });
+}));
+
+app.post('/api/charter/sign', adminAuth, ah(async (req, res) => {
+  const { version } = loadCharter();
+  const signedAt = Date.now();
+  await turso.execute({
+    sql: 'INSERT OR IGNORE INTO charter_signatures (user_id, version, signed_at) VALUES (?, ?, ?)',
+    args: [req.user.sub, version, signedAt],
+  });
+  res.json({ version, signedAt: await charterSignedAt(req.user.sub, version) });
+}));
+
+// Les cartes ne sont servies qu'une fois la version en cours de la charte signée. 428 (et non 403)
+// pour que le client ne confonde pas avec une session expirée.
+const requireCharter = ah(async (req, res, next) => {
+  if (await charterSignedAt(req.user.sub, loadCharter().version)) return next();
+  res.status(428).json({ error: 'Charte à signer', charterRequired: true });
+});
+
 // ---------- Cartes ----------
 
-app.get('/api/cards', adminAuth, (req, res) => {
+app.get('/api/cards', adminAuth, requireCharter, (req, res) => {
   res.json(loadCards().map(({ body, ...card }) => card));
 });
 
-app.get('/api/cards/:slug', adminAuth, (req, res) => {
+app.get('/api/cards/:slug', adminAuth, requireCharter, (req, res) => {
   const card = findCard(req.params.slug);
   if (!card) return res.status(404).json({ error: 'Fiche introuvable' });
   const { body, ...rest } = card;
@@ -196,7 +254,7 @@ app.get('/api/cards/:slug', adminAuth, (req, res) => {
 
 // Téléchargement d'une pièce jointe : on ne sert que les noms réellement présents dans le dossier
 // de la carte (jamais un chemin construit à partir de la requête), pour exclure tout "../".
-app.get('/api/cards/:slug/files/:name', adminAuth, (req, res) => {
+app.get('/api/cards/:slug/files/:name', adminAuth, requireCharter, (req, res) => {
   const card = findCard(req.params.slug);
   if (!card) return res.status(404).json({ error: 'Fiche introuvable' });
   const file = listFiles(card.slug).find(f => f.name === req.params.name);
@@ -214,6 +272,8 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Erreur serveur' });
 });
 
-app.listen(PORT, () => {
-  console.log(`\n🚀 Boîte à outils IA démarrée sur http://localhost:${PORT}/admin\n`);
+initDb().then(() => {
+  app.listen(PORT, () => {
+    console.log(`\n🚀 Boîte à outils IA démarrée sur http://localhost:${PORT}/admin\n`);
+  });
 });

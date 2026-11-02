@@ -110,7 +110,10 @@
     <!-- Liste des cartes -->
     <main id="listView" class="sh-page-container">
       <div class="bao-intro">
-        <h1>Bien travailler avec Claude</h1>
+        <div class="bao-intro-row">
+          <h1>Bien travailler avec l'IA</h1>
+          <button type="button" class="bao-link-btn" id="rereadCharterBtn"></button>
+        </div>
         <p>Skills, agents, serveurs MCP et bonnes pratiques testés par l'équipe UX.</p>
       </div>
       <div class="bao-toolbar">
@@ -134,7 +137,22 @@
     </main>
   </div>
 
+  <!-- Charte : bloquante tant que la version en cours n'est pas signée, simple relecture ensuite -->
+  <div class="sh-modal-overlay" id="charterModal">
+    <div class="sh-modal bao-charter">
+      <button type="button" class="sh-icon-trigger bao-charter-close" id="charterCloseBtn" aria-label="Fermer">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="bao-charter-body bao-prose" id="charterBody"></div>
+      <div class="bao-charter-footer">
+        <p class="bao-charter-signed" id="charterSigned"></p>
+        <button type="button" class="sh-btn sh-btn-primary" id="charterSignBtn">J'ai lu la charte et je m'y conforme</button>
+      </div>
+    </div>
+  </div>
+
   <script src="/suite/header.js"></script>
+  <script src="/suite/page.js"></script>
   <script src="/js/app.js"></script>
 </body>
 </html>

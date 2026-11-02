@@ -2,7 +2,6 @@
 type: skill
 titre: Skill : Reproduction d'écran en wireframe
 resume: Reproduit fidèlement une page existante en nuances de gris, à tous ses points de rupture, pour servir de base à une optimisation UX.
-statut: En production
 cible: Toute l'équipe UX
 objectif: Obtenir en quelques minutes un wireframe HTML fidèle d'une page en ligne, prêt à être modifié.
 domaine: Audit et refonte d'écrans existants, benchmark, préparation d'ateliers.

@@ -2,7 +2,6 @@
 type: mcp
 titre: Serveur MCP : Figma
 resume: Permet à Claude de lire une maquette Figma pour la coder, ou d'écrire directement dans un fichier Figma à partir d'un écran existant.
-statut: En production
 cible: UX designers
 objectif: Faire le pont entre Figma et le code dans les deux sens, sans export manuel.
 domaine: Passage maquette → intégration, rétro-documentation d'écrans en Figma, design system.
