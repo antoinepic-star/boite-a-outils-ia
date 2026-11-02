@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boîte à outils IA</title>
+<link rel="stylesheet" href="/suite/header.css">
+<link rel="stylesheet" href="/suite/page.css">
+<link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+
+  <!-- SSO : écran de patience pendant la vérification du jeton -->
+  <div id="ssoLoading"><div class="sso-spinner"></div></div>
+
+  <div id="app" style="display:none">
+    <header class="sh-header">
+      <div class="sh-header-inner">
+        <a class="sh-brand" href="/admin">
+          <div class="sh-logo"></div>
+          <span class="sh-title">Boîte à outils IA</span>
+        </a>
+        <div class="sh-right">
+          <button type="button" class="sh-pill-btn sh-pill-solid" onclick="shOpenDrawer('shToolsDrawer','shToolsOverlay')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+            Nos outils
+          </button>
+          <button type="button" class="sh-pill-btn sh-pill-outline" onclick="shOpenDrawer('shAccountDrawer','shAccountOverlay')">
+            <span class="sh-avatar" id="shHeaderAvatar"></span>
+            <span id="shHeaderName"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="sh-overlay" id="shToolsOverlay" onclick="shCloseDrawer('shToolsDrawer','shToolsOverlay')"></div>
+    <aside class="sh-drawer sh-drawer-wide" id="shToolsDrawer">
+      <button type="button" class="sh-icon-trigger sh-tools-close" onclick="shCloseDrawer('shToolsDrawer','shToolsOverlay')" aria-label="Fermer">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="sh-tools-body">
+        <h2 class="sh-tools-heading">Nos outils</h2>
+        <div class="sh-tools-grid">
+          <a class="sh-tool-tile" id="shToolDashboard" href="#">
+            <div class="sh-tool-tile-icon" style="background-color:#C4703B; background-image:url('/suite/assets/icon-dashboard.png');"></div>
+            <span class="sh-tool-tile-label">UX Dashboard</span>
+          </a>
+          <a class="sh-tool-tile" id="shToolKanban" href="#">
+            <div class="sh-tool-tile-icon" style="background-color:#453BC4; background-image:url('/suite/assets/icon-kanban.png');"></div>
+            <span class="sh-tool-tile-label">Kanban</span>
+          </a>
+          <a class="sh-tool-tile" id="shToolDesignReview" href="#">
+            <div class="sh-tool-tile-icon" style="background-color:#82C43B; background-image:url('/suite/assets/icon-design-review.png');"></div>
+            <span class="sh-tool-tile-label">Design Review</span>
+          </a>
+          <a class="sh-tool-tile" id="shToolTableauBlanc" href="#">
+            <div class="sh-tool-tile-icon" style="background-color:#E0A62B; background-image:url('/suite/assets/icon-tableau-blanc.png');"></div>
+            <span class="sh-tool-tile-label">Tableau Blanc</span>
+          </a>
+          <a class="sh-tool-tile" id="shToolVueProjet" href="#">
+            <div class="sh-tool-tile-icon" style="background-color:#1f8a7c; background-image:url('/suite/assets/icon-vueprojet.png');"></div>
+            <span class="sh-tool-tile-label">Vue Projet</span>
+          </a>
+          <a class="sh-tool-tile" href="/admin">
+            <div class="sh-tool-tile-icon" style="background-color:#C2417A; background-image:url('/suite/assets/icon-boite-a-outils.png');"></div>
+            <span class="sh-tool-tile-label">Boîte à outils IA</span>
+          </a>
+          <div class="sh-tool-tile sh-tool-tile-soon">
+            <div class="sh-tool-tile-icon sh-tool-tile-icon-soon" style="background-image:url('/suite/assets/icon-uxpilot.png');"></div>
+            <span class="sh-tool-tile-label">UX Pilot</span>
+            <span class="sh-tool-tile-badge">Coming soon</span>
+          </div>
+          <a class="sh-tool-tile" id="shToolAdmin" href="#">
+            <div class="sh-tool-tile-icon" style="background-color:#8F5029; background-image:url('/suite/assets/icon-admin.png');"></div>
+            <span class="sh-tool-tile-label">Administration</span>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <div class="sh-overlay" id="shAccountOverlay" onclick="shCloseDrawer('shAccountDrawer','shAccountOverlay')"></div>
+    <aside class="sh-drawer" id="shAccountDrawer">
+      <div class="sh-drawer-header">
+        <h2>Mon compte</h2>
+        <button type="button" class="sh-icon-trigger" onclick="shCloseDrawer('shAccountDrawer','shAccountOverlay')" aria-label="Fermer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="sh-drawer-body">
+        <div class="sh-avatar-wrap">
+          <div class="sh-avatar-edit">
+            <span class="sh-avatar sh-avatar-lg" id="shAccountAvatar"></span>
+            <label class="sh-avatar-pencil">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <input type="file" id="shAccountAvatarFile" accept="image/*">
+            </label>
+          </div>
+        </div>
+        <div class="sh-field"><label>Prénom</label><input type="text" id="shAccountName" disabled></div>
+        <div class="sh-info-note" id="shAccountNote">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <p>Pour modifier ton nom ou ton mot de passe, contacte Tonio.</p>
+        </div>
+      </div>
+      <div class="sh-drawer-footer">
+        <button type="button" class="sh-btn sh-btn-danger sh-btn-block" id="shLogoutBtn">Se déconnecter</button>
+      </div>
+    </aside>
+
+    <!-- Liste des cartes -->
+    <main id="listView" class="sh-page-container">
+      <div class="bao-intro">
+        <h1>Bien travailler avec Claude</h1>
+        <p>Skills, agents, serveurs MCP et bonnes pratiques testés par l'équipe UX.</p>
+      </div>
+      <div class="bao-toolbar">
+        <div class="bao-filters" id="filters"></div>
+        <label class="bao-search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="search" id="searchInput" placeholder="Rechercher">
+        </label>
+      </div>
+      <div class="bao-grid" id="cardGrid"></div>
+      <div class="sh-empty-state" id="emptyState" style="display:none">Aucune fiche ne correspond à ta recherche.</div>
+    </main>
+
+    <!-- Fiche détail -->
+    <main id="detailView" class="sh-page-container" style="display:none">
+      <a class="sh-back-link" href="#">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Toutes les fiches
+      </a>
+      <article class="sh-card bao-detail" id="detail"></article>
+    </main>
+  </div>
+
+  <script src="/suite/header.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
