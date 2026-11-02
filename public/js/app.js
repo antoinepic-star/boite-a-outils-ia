@@ -233,11 +233,21 @@
     );
     document.getElementById('cardGrid').innerHTML = visible.map(c => {
       const t = typeOf(c.type);
-      return `
-        <a class="sh-card bao-card" href="#${encodeURIComponent(c.slug)}" style="--type-color:${t.color}; --type-bg:${t.bg}">
+      const inner = `
           <div class="bao-card-type"><span class="bao-type-icon">${typeIcon(c.type)}</span>${esc(t.label)}</div>
           <h2 class="bao-card-title">${esc(c.title)}</h2>
-          <p class="bao-card-summary">${esc(c.summary)}</p>
+          <p class="bao-card-summary">${esc(c.summary)}</p>`;
+      // Carte pas encore rédigée : grisée, non cliquable, avec un sticker « À venir » par-dessus.
+      if (c.upcoming) {
+        return `
+        <div class="sh-card bao-card is-upcoming" aria-disabled="true" style="--type-color:${t.color}; --type-bg:${t.bg}">
+          <div class="bao-card-inner">${inner}</div>
+          <span class="bao-sticker">À venir</span>
+        </div>`;
+      }
+      return `
+        <a class="sh-card bao-card" href="#${encodeURIComponent(c.slug)}" style="--type-color:${t.color}; --type-bg:${t.bg}">
+          <div class="bao-card-inner">${inner}</div>
         </a>`;
     }).join('');
     document.getElementById('emptyState').style.display = visible.length ? 'none' : '';

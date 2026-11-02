@@ -28,6 +28,8 @@ fichier: mon-skill.zip         # fichier de content/files/<identifiant>/ téléc
 > Texte libre en Markdown (titres, listes, citations, code, liens, images).
 ```
 
+**Carte « À venir »** : un fichier avec seulement l'en-tête (`type`, `titre`, `resume`, `ordre`) et rien en dessous s'affiche grisé, non cliquable, avec un sticker « À venir » (après les cartes rédigées). Dès qu'on écrit du contenu sous l'en-tête, la carte devient consultable.
+
 Les champs `objectif`, `domaine` et `atout` sont facultatifs (le bloc « En un coup d'œil » n'affiche que ceux renseignés).
 
 **Fichiers téléchargeables** : dépose-les dans `content/files/<identifiant>/`. Celui désigné par `fichier:` devient le bouton principal en haut à droite de la fiche ; les autres sont proposés dans le menu « … », avec l'export PDF de la fiche.

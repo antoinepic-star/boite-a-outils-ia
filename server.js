@@ -101,6 +101,9 @@ function parseCard(slug, raw) {
     actionFile: meta.fichier || '',
     updatedAt: meta.maj || '',
     order: Number(meta.ordre) || 999,
+    // Une carte sans contenu (rien après l'en-tête) est annoncée « À venir » : visible dans la
+    // grille mais pas encore consultable. Elle s'active d'elle-même dès qu'on la rédige.
+    upcoming: !body.trim(),
     body,
   };
 }
@@ -133,7 +136,7 @@ function loadCards() {
   return fs.readdirSync(CONTENT_DIR)
     .filter(name => name.endsWith('.md') && name !== 'charte.md')
     .map(name => parseCard(name.replace(/\.md$/, ''), fs.readFileSync(path.join(CONTENT_DIR, name), 'utf8')))
-    .sort((a, b) => a.order - b.order || a.title.localeCompare(b.title, 'fr'));
+    .sort((a, b) => a.upcoming - b.upcoming || a.order - b.order || a.title.localeCompare(b.title, 'fr'));
 }
 
 function findCard(slug) {
@@ -248,6 +251,7 @@ app.get('/api/cards', adminAuth, requireCharter, (req, res) => {
 app.get('/api/cards/:slug', adminAuth, requireCharter, (req, res) => {
   const card = findCard(req.params.slug);
   if (!card) return res.status(404).json({ error: 'Fiche introuvable' });
+  if (card.upcoming) return res.status(404).json({ error: 'Cette fiche est en cours de rédaction.' });
   const { body, ...rest } = card;
   res.json({ ...rest, html: marked.parse(body), files: listFiles(card.slug) });
 });

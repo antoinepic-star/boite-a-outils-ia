@@ -34,6 +34,15 @@ body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sa
 .bao-card-title { font-size: 16.5px; font-weight: 700; line-height: 1.35; margin: 0 0 8px; }
 .bao-card:hover .bao-card-title { color: var(--type-color); }
 .bao-card-summary { flex: 1; font-size: 13.5px; line-height: 1.55; color: #68686f; margin: 0; }
+.bao-card-inner { display: flex; flex-direction: column; flex: 1; }
+
+/* Carte à venir : contenu grisé (le sticker, hors de .bao-card-inner, garde ses couleurs) */
+.bao-card.is-upcoming { cursor: default; background: #fafafb; }
+.bao-card.is-upcoming:hover { box-shadow: none; transform: none; }
+.bao-card.is-upcoming::before { background: #d4d4da; }
+.bao-card.is-upcoming .bao-card-inner { filter: grayscale(1); opacity: .45; }
+.bao-card.is-upcoming:hover .bao-card-title { color: inherit; }
+.bao-sticker { position: absolute; top: 18px; right: 14px; transform: rotate(6deg); padding: 8px 16px; border-radius: 9px; background: #C2417A; color: #fff; font-size: 15px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; box-shadow: 0 6px 18px rgba(194,65,122,.35); pointer-events: none; }
 
 /* ===== Fiche détail ===== */
 .bao-detail { padding: 36px 44px 32px; margin-bottom: 60px; border-top: 4px solid var(--type-color); }
