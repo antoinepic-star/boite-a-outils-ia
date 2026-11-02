@@ -8,6 +8,7 @@ domaine: Passage maquette → intégration, rétro-documentation d'écrans en Fi
 atout: Claude lit les vrais calques, variables et composants, pas une simple capture.
 maj: 2026-11-02
 ordre: 20
+a-venir: oui
 ---
 
 ## Rôle et valeur ajoutée

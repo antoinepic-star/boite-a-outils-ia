@@ -8,6 +8,7 @@ domaine: Signalement de bugs, demandes de retouches visuelles, benchmarks.
 atout: Claude voit exactement ce que tu vois, avec le contexte autour.
 maj: 2026-11-02
 ordre: 30
+a-venir: oui
 ---
 
 ## Le principe

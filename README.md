@@ -28,7 +28,7 @@ fichier: mon-skill.zip         # fichier de content/files/<identifiant>/ téléc
 > Texte libre en Markdown (titres, listes, citations, code, liens, images).
 ```
 
-**Carte « À venir »** : un fichier avec seulement l'en-tête (`type`, `titre`, `resume`, `ordre`) et rien en dessous s'affiche grisé, non cliquable, avec un sticker « À venir » (après les cartes rédigées). Dès qu'on écrit du contenu sous l'en-tête, la carte devient consultable.
+**Carte « À venir »** : un fichier avec seulement l'en-tête (`type`, `titre`, `resume`, `ordre`) et rien en dessous s'affiche grisé, non cliquable, avec un sticker « À venir » (après les cartes rédigées). Dès qu'on écrit du contenu sous l'en-tête, la carte devient consultable. Pour garder une carte déjà rédigée hors ligne, ajoute `a-venir: oui` dans son en-tête (et retire la ligne pour la publier).
 
 Les champs `objectif`, `domaine` et `atout` sont facultatifs (le bloc « En un coup d'œil » n'affiche que ceux renseignés).
 

@@ -8,6 +8,7 @@ domaine: Préférences de rédaction, conventions de nommage, étapes de validat
 atout: La mémoire est persistante et modifiable à tout moment.
 maj: 2026-11-02
 ordre: 40
+a-venir: oui
 ---
 
 ## Le principe

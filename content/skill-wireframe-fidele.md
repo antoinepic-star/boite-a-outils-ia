@@ -8,6 +8,7 @@ domaine: Audit et refonte d'écrans existants, benchmark, préparation d'atelier
 atout: Mêmes polices, tailles, marges et espacements que l'original, avec ses états (menus, onglets, survols).
 maj: 2026-11-02
 ordre: 10
+a-venir: oui
 ---
 
 ## Rôle et valeur ajoutée

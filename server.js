@@ -101,9 +101,9 @@ function parseCard(slug, raw) {
     actionFile: meta.fichier || '',
     updatedAt: meta.maj || '',
     order: Number(meta.ordre) || 999,
-    // Une carte sans contenu (rien après l'en-tête) est annoncée « À venir » : visible dans la
-    // grille mais pas encore consultable. Elle s'active d'elle-même dès qu'on la rédige.
-    upcoming: !body.trim(),
+    // Une carte sans contenu (rien après l'en-tête), ou marquée "a-venir: oui" (déjà rédigée mais
+    // pas encore publiée), est annoncée « À venir » : visible dans la grille mais pas consultable.
+    upcoming: !body.trim() || meta['a-venir'] === 'oui',
     body,
   };
 }

@@ -8,6 +8,7 @@ domaine: Restitutions d'ateliers, comptes rendus de tests, propositions et soute
 atout: On se concentre sur le fond : mise en page, couleurs, typographies et gabarits sont appliqués automatiquement.
 maj: 2026-11-02
 ordre: 15
+a-venir: oui
 ---
 
 ## Rôle et valeur ajoutée

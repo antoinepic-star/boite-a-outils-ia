@@ -8,6 +8,7 @@ domaine: Toutes les conversations avec Claude, en particulier les longues sessio
 atout: Moins de tokens consommés, c'est aussi des réponses plus rapides et plus précises.
 maj: 2026-11-02
 ordre: 35
+a-venir: oui
 ---
 
 ## Pourquoi c'est important
