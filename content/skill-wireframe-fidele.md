@@ -1,27 +1,61 @@
 ---
 type: skill
 titre: Skill : Reproduction d'écran en wireframe
-resume: Reproduit fidèlement une page existante en nuances de gris, à tous ses points de rupture, pour servir de base à une optimisation UX.
+resume: Donne l'URL d'une page, reçois un fichier HTML qui la reproduit fidèlement en gris, à tous ses points de rupture, prêt à être optimisé.
 cible: Toute l'équipe UX
-objectif: Obtenir en quelques minutes un wireframe HTML fidèle d'une page en ligne, prêt à être modifié.
-domaine: Audit et refonte d'écrans existants, benchmark, préparation d'ateliers.
-atout: Mêmes polices, tailles, marges et espacements que l'original, avec ses états (menus, onglets, survols).
+objectif: Obtenir en quelques minutes un wireframe HTML fidèle d'une page existante, comme point de départ d'une optimisation UX.
+domaine: Audit et refonte de pages existantes, propositions d'optimisation, préparation d'ateliers.
+atout: Une copie conforme au pixel près (textes, espacements, points de rupture et états), sans redessiner l'écran à la main.
 maj: 2026-11-02
 ordre: 10
-a-venir: oui
+action: Télécharger le skill
+fichier: reproduction-ecran-en-wireframe.skill
 ---
 
 ## Rôle et valeur ajoutée
 
-> Plutôt que de redessiner à la main un écran existant avant de pouvoir l'améliorer, on demande à Claude d'en produire une copie en gris, fidèle au pixel près. On part ainsi d'une base juste et on concentre son temps sur les vraies optimisations UX.
+> Avant de proposer des optimisations sur une page existante, il faut souvent la redessiner à l'identique. Ce skill fait ce travail à ta place : tu donnes l'URL, Claude te livre la page reproduite en gris, dans un fichier HTML que tu peux ouvrir et modifier. Tu passes directement aux vraies questions UX.
 
 ## Comment l'utiliser
 
-1. Donne l'URL de la page (ou des captures d'écran si elle est derrière une connexion).
-2. Demande par exemple : *« Reproduis cette page en wireframe gris, en desktop et en mobile. »*
-3. Claude livre une page HTML que tu peux ouvrir, annoter et faire évoluer.
+1. **Connecte Claude in Chrome** (l'extension Claude de ton navigateur Chrome). Ce n'est pas obligatoire, mais c'est ce qui rend le skill vraiment autonome.
+2. Dans une nouvelle conversation, écris simplement : *« Reproduis cette page en wireframe : [URL] »*.
+3. Claude te demande de confirmer en une phrase que la page est celle d'un client, ou qu'elle entre dans le cadre de ta mission.
+4. Tu reçois un **fichier `.html` à télécharger**. Ouvre-le dans ton navigateur.
+
+### Avec ou sans Chrome
+
+- **Avec Claude in Chrome**, tu ne fournis rien d'autre que l'URL. Claude ouvre la page dans ton navigateur et relève tout lui-même : textes, styles, points de rupture, images, et les états (menus, onglets, accordéons, survols). Les pages derrière une connexion fonctionnent aussi, puisqu'il utilise ta session.
+- **Sans Chrome**, Claude lit la page depuis l'URL, puis te demande en un seul message une capture bureau, une capture mobile et une capture par état important. Il t'explique comment les faire avec ton navigateur. Pour une page derrière une connexion, il te demandera la page enregistrée complète, en `.zip`.
+
+## Ce que tu reçois
+
+- **Un seul fichier HTML**, CSS et JavaScript inclus, au code lisible : les gris sont déclarés en variables en tête de fichier, et les sections sont commentées.
+- **Une palette de 6 gris** attribués par rôle : fonds, contours, texte principal, texte secondaire.
+- **Les images du site**, chargées directement depuis leur adresse et passées en noir et blanc.
+- **Tous les points de rupture du site**, aux mêmes seuils, avec la même largeur maximale de contenu.
+- **Les états fonctionnels** (menu ouvert, onglets, accordéons, survols), avec un petit sélecteur pour afficher chaque état sans manipulation.
+
+## Une fidélité stricte
+
+Le skill ne corrige rien, n'améliore rien et ne simplifie rien : c'est ce qui en fait une bonne base de travail.
+
+- Les textes sont copiés **tels quels**, fautes et libellés maladroits compris : ce sont autant de points à optimiser.
+- Les dimensions sont **identiques** : tailles de texte, marges, espacements, arrondis. Les titres passent à la ligne au même endroit.
+- Les **zones cliquables** sont les mêmes : si toute une carte est un lien sur le site, toute la carte réagit au survol.
+- Aucun design system n'est appliqué, même s'il y en a un dans le projet.
 
 ## Bon à savoir
 
-- Les images sont passées en saturation 0 % : on garde la composition sans être distrait par les visuels.
-- Le skill se déclenche tout seul dès qu'on parle de « reproduire », « refaire » ou « passer en gris » un écran.
+- **Les images s'affichent tant que le site est en ligne** et que ton ordinateur est connecté. Si un site interdit l'affichage de ses images ailleurs, elles sont remplacées par des blocs gris aux bonnes dimensions, et Claude te le signale.
+- **Les polices** du site ne se chargent généralement pas depuis un fichier local. Claude utilise la même police via Google Fonts si elle y existe, sinon la plus proche, et te prévient.
+- **Le résultat est un fichier, pas un artefact** : Claude ne doit pas le publier comme page en ligne ni comme prototype Claude Design, car les images du site ne s'afficheraient plus. Si c'est le cas, demande-lui le fichier `.html`.
+- **Réservé aux pages de nos clients**, ou reproduites dans le cadre d'une mission : ce n'est pas un outil de copie de sites concurrents.
+
+## Installer le skill
+
+1. Télécharge le skill avec le bouton en haut de cette fiche.
+2. Dans Claude, ouvre **Paramètres**, puis **Capacités**, section **Skills**, et importe le fichier.
+3. Si le skill est déjà installé, accepte de remplacer l'ancienne version.
+
+Pour le détail, consulte la fiche « Les skills : c'est quoi et comment les installer ? ».
