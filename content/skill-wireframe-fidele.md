@@ -56,7 +56,7 @@ Le skill ne corrige rien, n'améliore rien et ne simplifie rien : c'est ce qui e
 ## Installer le skill
 
 1. Télécharge le skill avec le bouton en haut de cette fiche.
-2. Dans Claude, ouvre **Paramètres**, puis **Capacités**, section **Skills**, et importe le fichier.
+2. Dans Claude, ouvre **Réglages**, puis, sous **Personnalisation**, l'entrée **Skills**, et importe le fichier.
 3. Si le skill est déjà installé, accepte de remplacer l'ancienne version.
 
 Pour le détail, consulte la fiche « Les skills : c'est quoi et comment les installer ? ».

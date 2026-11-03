@@ -1,12 +1,12 @@
 ---
 type: fiche
 titre: Les skills : c'est quoi et comment les installer ?
-resume: Ce qu'est un skill, à quoi il sert, comment Claude s'en sert et comment l'installer pour toi ou pour toute l'équipe.
+resume: Ce qu'est un skill, à quoi il sert, comment Claude s'en sert et comment l'installer.
 cible: Toute l'équipe UX
 objectif: Comprendre les skills pour savoir quand en utiliser, en installer ou en créer un.
 domaine: Claude (application web et bureau) et Claude Code.
 atout: Une méthode écrite une seule fois, appliquée de la même façon par tout le monde, sans avoir à la réexpliquer.
-maj: 2026-11-02
+maj: 2026-11-03
 ordre: 10
 action: Télécharger un modèle de skill
 fichier: modele-SKILL.md
@@ -50,15 +50,12 @@ Tu peux aussi l'appeler explicitement : *« Utilise le skill revue heuristique s
 
 ### Dans Claude (application web ou bureau)
 
-1. Ouvre **Paramètres**, puis **Capacités**.
-2. Vérifie que l'**exécution de code et la création de fichiers** est activée : les skills en ont besoin.
-3. Dans la section **Skills**, active les skills proposés ou clique sur **Importer un skill** et choisis le fichier `.zip` du dossier du skill.
+1. Ouvre **Réglages**, puis, sous **Personnalisation**, l'entrée **Skills**.
+2. Active les skills proposés, ou clique sur **Importer un skill** et choisis le fichier `.zip` du dossier du skill.
+
+Les skills ont besoin de l'**exécution de code et de la création de fichiers** : si elle n'est pas activée, Claude te le signalera.
 
 Les intitulés exacts peuvent varier légèrement selon la version de l'application.
-
-### Pour toute l'équipe
-
-Un administrateur de l'organisation Claude peut publier un skill pour tous les membres : il apparaît alors automatiquement chez chacun, sans installation. C'est la meilleure option pour les skills de l'équipe UX.
 
 ### Dans Claude Code
 
