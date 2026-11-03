@@ -6,7 +6,7 @@ cible: Toute l'équipe UX
 objectif: Obtenir en quelques minutes un wireframe HTML fidèle d'une page existante, comme point de départ d'une optimisation UX.
 domaine: Audit et refonte de pages existantes, propositions d'optimisation, préparation d'ateliers.
 atout: Une copie conforme au pixel près (textes, espacements, points de rupture et états), sans redessiner l'écran à la main.
-maj: 2026-11-02
+maj: 2026-11-03
 ordre: 10
 action: Télécharger le skill
 fichier: reproduction-ecran-en-wireframe.skill
@@ -34,7 +34,8 @@ fichier: reproduction-ecran-en-wireframe.skill
 - **Une palette de 6 gris** attribués par rôle : fonds, contours, texte principal, texte secondaire.
 - **Les images du site**, chargées directement depuis leur adresse et passées en noir et blanc.
 - **Tous les points de rupture du site**, aux mêmes seuils, avec la même largeur maximale de contenu.
-- **Les états fonctionnels** (menu ouvert, onglets, accordéons, survols), avec un petit sélecteur pour afficher chaque état sans manipulation.
+- **Les états fonctionnels** (menu ouvert, onglets, accordéons, survols), qui se découvrent en survolant et en cliquant, comme sur le site.
+- **Un prototype fermé** : les liens gardent leur apparence et leurs survols, mais un clic ne mène nulle part (autres pages, sites externes, téléchargements, e-mail, téléphone, formulaires). Seules les ancres de la page restent actives.
 
 ## Une fidélité stricte
 
