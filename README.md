@@ -34,6 +34,8 @@ Les champs `objectif`, `domaine` et `atout` sont facultatifs (le bloc « En un c
 
 **Fichiers téléchargeables** : dépose-les dans `content/files/<identifiant>/`. Celui désigné par `fichier:` devient le bouton principal en haut à droite de la fiche ; les autres sont proposés dans le menu « … », avec l'export PDF de la fiche.
 
+**Versions d'un skill** : chaque fiche de skill se termine par une rubrique `## Versions` (de la plus ancienne à la plus récente). À chaque nouveau fichier, ajoute une ligne `**Vn, le <date>**` avec ses nouveautés, et mets à jour `maj:`.
+
 ## Charte d'utilisation de l'IA
 
 Le texte est dans `content/charte.md`. Tant qu'un utilisateur n'a pas signé la version en cours, une popin bloque l'accès aux cartes (côté serveur aussi). **Changer la ligne `version:` redemande la signature à tout le monde** — à faire quand le contenu de la charte change.

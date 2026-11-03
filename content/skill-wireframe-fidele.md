@@ -60,3 +60,10 @@ Le skill ne corrige rien, n'améliore rien et ne simplifie rien : c'est ce qui e
 3. Si le skill est déjà installé, accepte de remplacer l'ancienne version.
 
 Pour le détail, consulte la fiche « Les skills : c'est quoi et comment les installer ? ».
+
+## Versions
+
+- **V1, le 2 novembre 2026** : première version.
+- **V2, le 3 novembre 2026** :
+  - Le prototype est fermé : les liens vers d'autres pages, d'autres sites, des téléchargements, une adresse e-mail, un numéro de téléphone ou un envoi de formulaire ne mènent plus nulle part.
+  - Le menu déroulant qui permettait d'afficher chaque état disparaît : les états se découvrent en survolant et en cliquant, comme sur le site.
